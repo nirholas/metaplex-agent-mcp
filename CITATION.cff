@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it as below.
+title: "@three-ws/metaplex-agent-mcp"
+abstract: "Deploy AI agents on-chain into the Metaplex Agent Registry on Solana: one atomic transaction mints a Metaplex Core asset (data: URI metadata, verified creator, royalties, immutable metadata) and registers its EIP-8004 agent identity, so the agent lands with its own on-chain wallet. Agents sign with their own key; people sign with Phantom, Solflare, or any Solana wallet via the prepare/send flow. A flat mainnet deploy fee funds $THREE buybacks and is waived for $THREE holders. Every Core plugin and every metadata field is customizable."
+version: 0.2.1
+license: Apache-2.0
+repository-code: "https://github.com/nirholas/metaplex-agent-mcp"
+url: "https://three.ws"
+authors:
+  - name: three.ws
+    website: "https://three.ws"

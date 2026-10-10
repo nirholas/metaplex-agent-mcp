@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>@three-ws/metaplex-agent-mcp: Deploy AI agents on-chain into the Metaplex Agent Registry on Solana</title>
+<meta name="description" content="Deploy AI agents on-chain into the Metaplex Agent Registry on Solana: one atomic transaction mints a Metaplex Core asset (data: URI metadata, verified creator, royalties, immutable metadata) and registers its EIP-8004 agent identity, so the agent lands with its own on-chain wallet.">
+<link rel="canonical" href="https://nirholas.github.io/metaplex-agent-mcp/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="three.ws">
+<meta property="og:title" content="@three-ws/metaplex-agent-mcp">
+<meta property="og:description" content="Deploy AI agents on-chain into the Metaplex Agent Registry on Solana: one atomic transaction mints a Metaplex Core asset (data: URI metadata, verified creator, royalties, immutable metadata) and registers its EIP-8004 agent identity, so the agent lands with its own on-chain wallet.">
+<meta property="og:url" content="https://nirholas.github.io/metaplex-agent-mcp/">
+<meta property="og:image" content="https://nirholas.github.io/metaplex-agent-mcp/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="@three-ws/metaplex-agent-mcp">
+<meta name="twitter:description" content="Deploy AI agents on-chain into the Metaplex Agent Registry on Solana: one atomic transaction mints a Metaplex Core asset (data: URI metadata, verified creator, royalties, immutable metadata) and registers its EIP-8004 agent identity, so the agent lands with its own on-chain wallet.">
+<meta name="twitter:image" content="https://nirholas.github.io/metaplex-agent-mcp/og.png">
+<meta name="keywords" content="mcp, model-context-protocol, three.ws, metaplex, agent-registry, mpl-core, solana, onchain-agent, erc-8004, eip-8004, x402, ai-agent, nft, mcp-server, ai-agents">
+<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+<link rel="icon" href="https://three.ws/three-ws-mcp-icon.svg" type="image/svg+xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"@three-ws/metaplex-agent-mcp","description":"Deploy AI agents on-chain into the Metaplex Agent Registry on Solana: one atomic transaction mints a Metaplex Core asset (data: URI metadata, verified creator, royalties, immutable metadata) and registers its EIP-8004 agent identity, so the agent lands with its own on-chain wallet.","codeRepository":"https://github.com/nirholas/metaplex-agent-mcp","programmingLanguage":"JavaScript","license":"https://spdx.org/licenses/Apache-2.0.html","version":"0.2.1","url":"https://nirholas.github.io/metaplex-agent-mcp/","author":{"@type":"Organization","name":"three.ws","url":"https://three.ws"},"keywords":"mcp, model-context-protocol, three.ws, metaplex, agent-registry, mpl-core, solana, onchain-agent, erc-8004, eip-8004, x402, ai-agent, nft, mcp-server, ai-agents"}</script>
+<style>:root{--bg:#fff;--fg:#111418;--mut:#586069;--line:#e3e6ea;--acc:#2563eb;--code:#f4f6f8;--card:#fafbfc}
+@media(prefers-color-scheme:dark){:root{--bg:#0b0d10;--fg:#e8eaed;--mut:#9aa3ad;--line:#232830;--acc:#6ea0ff;--code:#14181d;--card:#10141a}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--acc)}a:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:4px}
+header.bar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-in{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-weight:700;text-decoration:none;color:var(--fg)}
+.bar nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+.bar nav a{color:var(--mut);text-decoration:none;transition:color .15s}.bar nav a:hover{color:var(--fg)}
+.hero{max-width:1100px;margin:0 auto;padding:48px 16px 24px}
+.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.15;margin:0 0 12px;letter-spacing:-.02em}
+.hero p{color:var(--mut);max-width:70ch;font-size:18px;margin:0 0 24px}
+.install{display:flex;align-items:center;gap:8px;max-width:620px;background:var(--code);border:1px solid var(--line);border-radius:10px;padding:6px 6px 6px 14px}
+.install code{flex:1;overflow-x:auto;white-space:nowrap;font:14px ui-monospace,SFMono-Regular,Menlo,monospace}
+.install button{border:0;background:var(--acc);color:#fff;border-radius:7px;padding:8px 14px;font:600 13px system-ui;cursor:pointer;transition:transform .12s,opacity .12s}
+.install button:hover{opacity:.9}.install button:active{transform:scale(.96)}
+.cta{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.cta a{padding:9px 16px;border:1px solid var(--line);border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;color:var(--fg);transition:border-color .15s,transform .15s}
+.cta a:hover{border-color:var(--acc);transform:translateY(-1px)}.cta a.pri{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.layout{max-width:1100px;margin:0 auto;padding:8px 16px 64px;display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:40px}
+@media(max-width:860px){.layout{grid-template-columns:minmax(0,1fr)}.toc{display:none}}
+.toc{position:sticky;top:76px;align-self:start;font-size:14px;border-left:1px solid var(--line);padding-left:16px}
+.toc p{margin:0 0 8px;font-weight:700;color:var(--mut);text-transform:uppercase;font-size:12px;letter-spacing:.06em}
+.toc ul{list-style:none;margin:0;padding:0}.toc li{margin:6px 0}.toc a{color:var(--mut);text-decoration:none}.toc a:hover{color:var(--fg)}
+main{min-width:0;overflow-wrap:anywhere}main pre code{overflow-wrap:normal}main img{max-width:100%;height:auto}
+main h2{margin-top:2.2em;padding-bottom:.3em;border-bottom:1px solid var(--line)}
+.anchor{margin-left:-1.1em;padding-right:.4em;text-decoration:none;opacity:0;color:var(--mut)}h2:hover .anchor,h3:hover .anchor,h4:hover .anchor{opacity:1}
+pre{background:var(--code);border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:14px;line-height:1.5}
+code{font:0.9em ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--code);padding:.15em .35em;border-radius:5px}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%}th,td{border:1px solid var(--line);padding:8px 12px;text-align:left}th{background:var(--card)}
+blockquote{margin:1em 0;padding:.2em 1em;border-left:4px solid var(--line);color:var(--mut)}
+footer{border-top:1px solid var(--line);color:var(--mut);font-size:14px}
+.foot-in{max-width:1100px;margin:0 auto;padding:24px 16px;display:flex;gap:16px;flex-wrap:wrap}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}</style>
+</head>
+<body>
+<header class="bar"><div class="bar-in">
+<a class="brand" href="https://nirholas.github.io/metaplex-agent-mcp/">@three-ws/metaplex-agent-mcp</a>
+<nav aria-label="Project links"><a href="https://github.com/nirholas/metaplex-agent-mcp">GitHub</a><a href="https://www.npmjs.com/package/@three-ws/metaplex-agent-mcp">npm</a><a href="llms.txt">llms.txt</a><a href="https://three.ws">three.ws</a></nav>
+</div></header>
+<section class="hero">
+<h1>@three-ws/metaplex-agent-mcp</h1>
+<p>Deploy AI agents on-chain into the Metaplex Agent Registry on Solana: one atomic transaction mints a Metaplex Core asset (data: URI metadata, verified creator, royalties, immutable metadata) and registers its EIP-8004 agent identity, so the agent lands with its own on-chain wallet.</p>
+<div class="install" role="group" aria-label="Install command"><code>npx -y @three-ws/metaplex-agent-mcp</code><button type="button" data-copy="npx -y @three-ws/metaplex-agent-mcp">Copy</button></div>
+<div class="cta"><a class="pri" href="https://github.com/nirholas/metaplex-agent-mcp">View on GitHub</a><a href="https://github.com/nirholas/metaplex-agent-mcp/stargazers">Star the repo</a><a href="https://registry.modelcontextprotocol.io/?q=io.github.nirholas%2Fmetaplex-agent">MCP Registry</a></div>
+</section>
+<div class="layout">
+<main id="content"><h1>@three-ws/metaplex-agent-mcp</h1>
+<p>Deploy AI agents on-chain into the <strong><a href="https://www.metaplex.com/agents">Metaplex Agent Registry</a></strong> on Solana, from any MCP client.</p>
+<p>One flow mints a <strong>Metaplex Core asset</strong> and registers its <strong>EIP-8004 agent identity</strong> (a single atomic transaction when it fits Solana&#39;s 1232-byte limit, create + register in sequence otherwise, exactly how the Genesis 333 landed), so the agent shows up on metaplex.com/agents with its own built-in wallet, reputation surface, and explorer pages. The default output reproduces the exact shape of the <a href="https://three.ws">three.ws</a> Genesis 333 mints, verified byte-for-byte against the live assets:</p>
+<ul>
+<li>asset metadata as a self-contained <code>data:application/json;base64</code> URI (<code>name</code>, <code>image</code>, <code>animation_url</code> GLB)</li>
+<li>Royalties plugin (5% to the owner), VerifiedCreators (the signing wallet), ImmutableMetadata</li>
+<li>AgentIdentity plugin carrying the <code>eip-8004#registration-v1</code> document (<code>model.uri</code>, <code>active</code>, <code>x402Support</code>, <code>registrations</code>, <code>supportedTrust</code>)</li>
+</ul>
+<p>Two signing lanes, both self-custodial:</p>
+<ul>
+<li><strong>Agents</strong> sign with their own keypair (<code>SOLANA_SECRET_KEY</code>): <code>mint_onchain_agent</code>.</li>
+<li><strong>People</strong> sign with Phantom, Solflare, Backpack, Ledger, or any Solana wallet: <code>prepare_agent_mint</code> builds the transaction, the wallet signs it, <code>send_signed_transaction</code> broadcasts it. No key ever touches the server.</li>
+</ul>
+<p>A mainnet deploy pays a flat <strong>0.02 SOL</strong> fee, in the same transaction as the mint, and that fee funds <strong><a href="https://three.ws/three">$THREE</a> buybacks</strong>. Hold $THREE and it halves, then disappears; devnet never pays it. Every preview shows the number and its recipient before anything is signed. See <a href="#three-the-deploy-fee-and-the-holder-waiver">$THREE: the deploy fee and the holder waiver</a>.</p>
+<p>Nothing is mocked: real Metaplex programs, real Solana, and devnet support for free end-to-end rehearsal.</p>
+<h2 id="install"><a class="anchor" href="#install" aria-label="Link to this section">#</a>Install</h2>
+<pre><code class="language-bash">npm install -g @three-ws/metaplex-agent-mcp
+# or run ad hoc
+npx -y @three-ws/metaplex-agent-mcp
+</code></pre>
+<h2 id="setup"><a class="anchor" href="#setup" aria-label="Link to this section">#</a>Setup</h2>
+<p>Claude Code:</p>
+<pre><code class="language-bash">claude mcp add metaplex-agent -e SOLANA_SECRET_KEY=&lt;base58&gt; -- npx -y @three-ws/metaplex-agent-mcp
+</code></pre>
+<p>Cursor / any MCP client (<code>mcp.json</code>):</p>
+<pre><code class="language-json">{
+	&quot;mcpServers&quot;: {
+		&quot;metaplex-agent&quot;: {
+			&quot;command&quot;: &quot;npx&quot;,
+			&quot;args&quot;: [&quot;-y&quot;, &quot;@three-ws/metaplex-agent-mcp&quot;],
+			&quot;env&quot;: { &quot;SOLANA_SECRET_KEY&quot;: &quot;&lt;base58 secret key&gt;&quot; }
+		}
+	}
+}
+</code></pre>
+<p><code>SOLANA_SECRET_KEY</code> is optional: every read tool and the whole Phantom/Solflare flow works without it.</p>
+<h2 id="quick-start"><a class="anchor" href="#quick-start" aria-label="Link to this section">#</a>Quick start</h2>
+<p>Rehearse on devnet for free, then go to mainnet:</p>
+<pre><code>1. agent_wallet {}                                → confirm the signer is funded
+2. mint_onchain_agent { name: &quot;Astra&quot;, description: &quot;…&quot;,
+     image: &quot;https://…png&quot;, model_url: &quot;https://…glb&quot;,
+     x402_support: true, network: &quot;devnet&quot; }      → preview (nothing broadcast)
+3. …same call with confirm: true                  → minted + registered, links returned
+4. get_onchain_agent { asset: &quot;&lt;returned asset&gt;&quot;, network: &quot;devnet&quot; }
+</code></pre>
+<p>A mainnet deploy costs ~0.027 SOL: ~0.007 in Core rent, identity PDA rent, and network fees, plus a
+flat 0.02 SOL deploy fee that funds $THREE buybacks. Holding $THREE halves that fee and then waives
+it, and devnet is free. See <a href="#three-the-deploy-fee-and-the-holder-waiver">$THREE</a>.</p>
+<h2 id="tools"><a class="anchor" href="#tools" aria-label="Link to this section">#</a>Tools</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>mint_onchain_agent</code></td>
+<td>Mint + register, signed by your key (atomic when it fits, auto-split otherwise). <code>confirm:true</code> gates the spend; anything else returns a full preview.</td>
+</tr>
+<tr>
+<td><code>prepare_agent_mint</code></td>
+<td>The same mint, built for an external wallet (<code>wallet</code> param) to sign. Returns <code>txs_base64</code>, already co-signed by the new asset keypair; sign with <code>signTransaction</code> / <code>signAllTransactions</code>.</td>
+</tr>
+<tr>
+<td><code>send_signed_transaction</code></td>
+<td>Broadcast wallet-signed transactions in order, polling each to confirmation and absorbing the create/register propagation race.</td>
+</tr>
+<tr>
+<td><code>register_agent_identity</code></td>
+<td>Enrol an already-minted Core asset in the Agent Registry (idempotent; the signer must be the asset authority).</td>
+</tr>
+<tr>
+<td><code>get_onchain_agent</code></td>
+<td>Read any registered agent: asset, plugins, decoded metadata + registration documents, identity PDA, built-in wallet + balance.</td>
+</tr>
+<tr>
+<td><code>agent_wallet</code></td>
+<td>An asset&#39;s built-in wallet (mpl-core Asset Signer PDA), any address, or the configured signer, with live SOL balance.</td>
+</tr>
+<tr>
+<td><code>build_registration</code></td>
+<td>The EIP-8004 registration JSON + <code>data:</code> URI, fully offline.</td>
+</tr>
+<tr>
+<td><code>list_onchain_agents</code></td>
+<td>Latest registrations from the live three.ws <code>/api/deployments</code> feed (Solana by default, <code>all_chains:true</code> for EVM ERC-8004 too).</td>
+</tr>
+<tr>
+<td><code>three_status</code></td>
+<td>Prices your next deploy: fee schedule, a wallet&#39;s live $THREE balance and tier, and the public buyback ledger.</td>
+</tr>
+</tbody></table>
+<h2 id="three-the-deploy-fee-and-the-holder-waiver"><a class="anchor" href="#three-the-deploy-fee-and-the-holder-waiver" aria-label="Link to this section">#</a>$THREE: the deploy fee and the holder waiver</h2>
+<p>A <strong>mainnet</strong> deploy carries a flat <strong>0.02 SOL</strong> fee. Three things about it matter:</p>
+<ul>
+<li><strong>It rides in the same transaction that creates the asset.</strong> A deploy that fails, is rejected, or
+expires moves no money. There is no separate payment step and nothing to reconcile.</li>
+<li><strong>It is disclosed before anything is signed.</strong> Every <code>mint_onchain_agent</code> preview and every
+<code>prepare_agent_mint</code> response returns <code>deploy_fee_sol</code> and <code>deploy_fee_to</code>, with the tier that
+produced them.</li>
+<li><strong>It funds $THREE buybacks.</strong> The fee is paid to the wallet the three.ws
+<a href="https://three.ws/three">$THREE</a> buyback lane spends from
+(<code>FeMbDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump</code> is the mint), and the public ledger of what that
+lane has bought is at <a href="https://three.ws/api/three-token/stats"><code>/api/three-token/stats</code></a>. Deploys
+are the only revenue this package has.</li>
+</ul>
+<p><strong>Holding $THREE makes it cheaper, then free:</strong></p>
+<table>
+<thead>
+<tr>
+<th>$THREE in the paying wallet</th>
+<th>Deploy fee</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>under 50,000</td>
+<td>0.02 SOL</td>
+</tr>
+<tr>
+<td>50,000 or more</td>
+<td>0.01 SOL</td>
+</tr>
+<tr>
+<td>250,000 or more</td>
+<td>free</td>
+</tr>
+</tbody></table>
+<p>The balance is read live from the chain when the transaction is built. Nothing is staked, escrowed,
+locked, or spent to earn it: hold the tokens in your own wallet and keep them, and the waiver applies
+to every agent you deploy. Devnet always pays zero, so a full end-to-end rehearsal stays free.</p>
+<pre><code>three_status {}                                  → what your next deploy costs and why
+three_status { wallet: &quot;&lt;any base58 address&gt;&quot; }  → price it for someone else&#39;s wallet
+</code></pre>
+<p>Self-hosting a fork with different economics is <code>DEPLOY_FEE_SOL</code>, <code>DEPLOY_FEE_WALLET</code>, and
+<code>DEPLOY_FEE_ENABLED</code>.</p>
+<h2 id="customization"><a class="anchor" href="#customization" aria-label="Link to this section">#</a>Customization</h2>
+<p>Every field the mint touches is a parameter: owner, collection, royalty basis points and splits, verified creator, immutable metadata, on-chain Attributes, permanent freeze/transfer/burn delegates, AddBlocker, off-chain metadata attributes, <code>external_url</code>, services, trust models, registration entries, and full <code>metadata_uri</code> / <code>registration_uri</code> overrides for documents you host yourself. The defaults are the Genesis 333 values, so calling with just <code>name</code>, <code>description</code>, <code>image</code>, and <code>model_url</code> produces an asset indistinguishable in shape from the originals.</p>
+<h2 id="safety"><a class="anchor" href="#safety" aria-label="Link to this section">#</a>Safety</h2>
+<ul>
+<li><code>mint_onchain_agent</code> and <code>register_agent_identity</code> broadcast <strong>only</strong> with <code>confirm: true</code> (set <code>REQUIRE_CONFIRM=false</code> to opt out); previews cost nothing.</li>
+<li>Keys stay yours: <code>SOLANA_SECRET_KEY</code> or a per-call <code>secret</code>, never a custodial wallet. The wallet lane needs no key at all.</li>
+<li>Balances are checked before spending, RPC endpoints must be HTTPS, and devnet is a first-class target for rehearsal.</li>
+</ul>
+<h2 id="environment-variables"><a class="anchor" href="#environment-variables" aria-label="Link to this section">#</a>Environment variables</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SOLANA_SECRET_KEY</code></td>
+<td>unset</td>
+<td>Base58 secret key or JSON byte array for the minting wallet.</td>
+</tr>
+<tr>
+<td><code>SOLANA_RPC_URL</code></td>
+<td>public endpoint</td>
+<td>HTTPS RPC. Bring your own for production traffic.</td>
+</tr>
+<tr>
+<td><code>METAPLEX_AGENT_NETWORK</code></td>
+<td><code>mainnet</code></td>
+<td>Default cluster (<code>mainnet</code> or <code>devnet</code>); every tool takes a per-call <code>network</code> too.</td>
+</tr>
+<tr>
+<td><code>REQUIRE_CONFIRM</code></td>
+<td><code>true</code></td>
+<td>Gate spends behind <code>confirm: true</code>.</td>
+</tr>
+<tr>
+<td><code>THREE_WS_BASE</code></td>
+<td><code>https://three.ws</code></td>
+<td>Host for the deployments feed and the $THREE ledger.</td>
+</tr>
+<tr>
+<td><code>DEPLOY_FEE_SOL</code></td>
+<td><code>0.02</code></td>
+<td>Mainnet deploy fee, in SOL.</td>
+</tr>
+<tr>
+<td><code>DEPLOY_FEE_WALLET</code></td>
+<td>three.ws buyback wallet</td>
+<td>Where the deploy fee is paid.</td>
+</tr>
+<tr>
+<td><code>DEPLOY_FEE_ENABLED</code></td>
+<td><code>true</code></td>
+<td>Set false to build a fork that charges nothing.</td>
+</tr>
+<tr>
+<td><code>THREE_HALF_PRICE_AT</code> / <code>THREE_FREE_AT</code></td>
+<td><code>50000</code> / <code>250000</code></td>
+<td>$THREE balances that halve, then waive, the fee.</td>
+</tr>
+<tr>
+<td><code>THREE_MINT</code></td>
+<td>$THREE mint</td>
+<td>Only to track an updated canonical contract.</td>
+</tr>
+</tbody></table>
+<h2 id="library-use"><a class="anchor" href="#library-use" aria-label="Link to this section">#</a>Library use</h2>
+<p>The builders are exported for direct embedding (web apps, scripts):</p>
+<pre><code class="language-js">import { buildAgentMint, sendAgentMint, buildUmi, toBase58Signature } from &#39;@three-ws/metaplex-agent-mcp/lib&#39;;
+
+const umi = buildUmi({ network: &#39;devnet&#39;, secret: process.env.SOLANA_SECRET_KEY });
+const mint = buildAgentMint(umi, {
+	network: &#39;devnet&#39;,
+	creator: umi.identity.publicKey.toString(),
+	name: &#39;Astra&#39;,
+	description: &#39;An autonomous 3D agent&#39;,
+	image: &#39;https://example.com/astra.png&#39;,
+	modelUrl: &#39;https://example.com/astra.glb&#39;,
+	x402Support: true,
+});
+const { signatures, atomic } = await sendAgentMint(umi, mint, { toBase58Signature });
+</code></pre>
+<p>The registration and metadata builders are also importable on their own (dependency-free, browser-safe) from <code>@three-ws/metaplex-agent-mcp/lib/registration</code>, and the transaction builders from <code>@three-ws/metaplex-agent-mcp/lib/mint</code>. The three.ws <code>/deploy-onchain</code> page runs on exactly these. When <code>atomic</code> is <code>false</code>, <code>combinedBuilder</code> still holds the whole mint: compiled as a Solana transaction v1 (4,096-byte limit) it lands create + register in one atomic transaction, which is what <code>/deploy-onchain</code> does for any wallet that advertises v1 signing.</p>
+<h2 id="requirements"><a class="anchor" href="#requirements" aria-label="Link to this section">#</a>Requirements</h2>
+<ul>
+<li>Node 20+</li>
+<li>SOL on the target network for minting (~0.027 SOL per agent on mainnet, or ~0.007 with the
+holder waiver; devnet is free via faucet)</li>
+</ul>
+<h2 id="links"><a class="anchor" href="#links" aria-label="Link to this section">#</a>Links</h2>
+<ul>
+<li>three.ws: <a href="https://three.ws">https://three.ws</a></li>
+<li>$THREE: <a href="https://three.ws/three">https://three.ws/three</a></li>
+<li>Live deployments feed: <a href="https://three.ws/deployments">https://three.ws/deployments</a></li>
+<li>Metaplex Agent Registry: <a href="https://www.metaplex.com/agents">https://www.metaplex.com/agents</a></li>
+<li>Metaplex docs: <a href="https://www.metaplex.com/docs/agents">https://www.metaplex.com/docs/agents</a></li>
+<li>Source: <a href="https://github.com/nirholas/three.ws/tree/main/packages/metaplex-agent-mcp">https://github.com/nirholas/three.ws/tree/main/packages/metaplex-agent-mcp</a></li>
+</ul>
+</main>
+<nav class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#install">Install</a></li><li><a href="#setup">Setup</a></li><li><a href="#quick-start">Quick start</a></li><li><a href="#tools">Tools</a></li><li><a href="#three-the-deploy-fee-and-the-holder-waiver">$THREE: the deploy fee and the holder waiver</a></li><li><a href="#customization">Customization</a></li><li><a href="#safety">Safety</a></li><li><a href="#environment-variables">Environment variables</a></li><li><a href="#library-use">Library use</a></li><li><a href="#requirements">Requirements</a></li><li><a href="#links">Links</a></li></ul></nav>
+</div>
+<footer><div class="foot-in"><span>Apache-2.0 licensed</span><a href="https://github.com/nirholas/metaplex-agent-mcp/issues">Issues</a><a href="https://github.com/nirholas/metaplex-agent-mcp/blob/main/CONTRIBUTING.md">Contributing</a><a href="https://github.com/nirholas/metaplex-agent-mcp/security/policy">Security</a><a href="https://three.ws">Part of three.ws</a></div></footer>
+<script>document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
+var t=b.getAttribute('data-copy');var done=function(){var o=b.textContent;b.textContent='Copied';setTimeout(function(){b.textContent=o},1400)};
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){})}
+else{var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){}a.remove()}})});</script>
+</body>
+</html>

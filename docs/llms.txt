@@ -1,0 +1,20 @@
+# @three-ws/metaplex-agent-mcp
+
+> Deploy AI agents on-chain into the Metaplex Agent Registry on Solana: one atomic transaction mints a Metaplex Core asset (data: URI metadata, verified creator, royalties, immutable metadata) and registers its EIP-8004 agent identity, so the agent lands with its own on-chain wallet. Agents sign with their own key; people sign with Phantom, Solflare, or any Solana wallet via the prepare/send flow. A flat mainnet deploy fee funds $THREE buybacks and is waived for $THREE holders. Every Core plugin and every metadata field is customizable.
+
+@three-ws/metaplex-agent-mcp is a Model Context Protocol server from three.ws. Install: `npx -y @three-ws/metaplex-agent-mcp`.
+
+## Docs
+
+- [README](https://github.com/nirholas/metaplex-agent-mcp/blob/main/README.md): install, configuration, full reference
+- [Documentation site](https://nirholas.github.io/metaplex-agent-mcp/): the README as a web page
+- [Full text for LLMs](https://nirholas.github.io/metaplex-agent-mcp/llms-full.txt): README inlined
+- [AGENTS.md](https://github.com/nirholas/metaplex-agent-mcp/blob/main/AGENTS.md): guidance for coding agents
+
+## Project
+
+- [Source](https://github.com/nirholas/metaplex-agent-mcp)
+- [npm](https://www.npmjs.com/package/@three-ws/metaplex-agent-mcp)
+- [three.ws](https://three.ws): the platform this is part of
+- [Issues](https://github.com/nirholas/metaplex-agent-mcp/issues)
+- [MCP Registry](https://registry.modelcontextprotocol.io/?q=io.github.nirholas%2Fmetaplex-agent)
