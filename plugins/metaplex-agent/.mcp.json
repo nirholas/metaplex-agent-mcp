@@ -1,0 +1,1 @@
+{"mcpServers":{"metaplex-agent":{"command":"npx","args":["-y","@three-ws/metaplex-agent-mcp"]}}}
