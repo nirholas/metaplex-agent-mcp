@@ -72,6 +72,6 @@
 		"@metaplex-foundation/umi-bundle-defaults": "^1.6.0",
 		"@modelcontextprotocol/sdk": "^1.29.0",
 		"bs58": "^6.0.0",
-		"zod": "^3.23.8"
+		"zod": "^4.6.6"
 	}
 }
